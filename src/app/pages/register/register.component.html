@@ -1,0 +1,94 @@
+<!-- 
+<div *ngIf="isLoading" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div style="border-top-color:transparent"
+        class="w-16 h-16 border-4 border-red-400 border-double rounded-full animate-spin"></div>
+</div> -->
+<app-alert *ngIf="alertMessage" [message]="alertMessage" [type]="alertType"></app-alert>
+<div class="bg-zinc-950 flex items-center justify-center h-screen">
+    <div class="flex flex-col justify-center items-center w-full bg-zinc-950">
+        <div class="w-full max-w-md px-6">
+            <a class="mt-10 w-fit text-white" href="/login">
+                <div class="flex w-fit items-center lg:pl-0 lg:pt-0 xl:pt-0">
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 320 512"
+                    class="mr-3 h-[13px] w-[8px] text-white"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+                    ></path>
+                  </svg>
+                  <p class="ml-0 text-sm text-white">Iniciar Sesion</p>
+                </div>
+              </a>
+            <div class="text-center mt-8">
+                <p class="text-[32px] font-bold text-white">Sign In</p>
+                <p class="mb-4 mt-2 text-zinc-400">
+                    Regístrate para utilizar la IA
+                </p>
+            </div>
+
+            <div class="relative my-4">
+                <div class="relative flex items-center py-1">
+                    <div class="grow border-t border-zinc-800"></div>
+                    <div class="grow border-t border-zinc-800"></div>
+                </div>
+            </div>
+
+            <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate class="space-y-4">
+                <!-- Nombre -->
+                <div class="flex flex-col">
+                    <label class="text-white" for="name">Nombre</label>
+                    <input id="name" type="text" [(ngModel)]="name" name="name" #nameField="ngModel" required
+                        class="w-full rounded-lg border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm placeholder:text-zinc-400 focus:outline-none" />
+                    <p *ngIf="nameField.invalid && nameField.touched" class="text-red-500 text-sm mt-1">
+                        El nombre es obligatorio.
+                    </p>
+                </div>
+
+                <!-- Username -->
+                <div class="flex flex-col">
+                    <label class="text-white" for="username">Username</label>
+                    <input id="username" type="text" [(ngModel)]="username" name="username" #usernameField="ngModel"
+                        required
+                        class="w-full rounded-lg border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm placeholder:text-zinc-400 focus:outline-none" />
+                    <p *ngIf="usernameField.invalid && usernameField.touched" class="text-red-500 text-sm mt-1">
+                        El username es obligatorio.
+                    </p>
+                </div>
+
+                <!-- Email -->
+                <div class="flex flex-col">
+                    <label class="text-white" for="email">Email</label>
+                    <input id="email" type="email" [(ngModel)]="email" name="email" #emailField="ngModel" required email
+                        class="w-full rounded-lg border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm placeholder:text-zinc-400 focus:outline-none" />
+                    <p *ngIf="emailField.invalid && emailField.touched" class="text-red-500 text-sm mt-1">
+                        Ingresa un email válido.
+                    </p>
+                </div>
+
+                <!-- Password -->
+                <div class="flex flex-col">
+                    <label class="text-white" for="password">Password</label>
+                    <input id="password" type="password" [(ngModel)]="password" name="password" #passwordField="ngModel"
+                        required minlength="6"
+                        class="w-full rounded-lg border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm placeholder:text-zinc-400 focus:outline-none" />
+                    <p *ngIf="passwordField.invalid && passwordField.touched" class="text-red-500 text-sm mt-1">
+                        La contraseña debe tener al menos 6 caracteres.
+                    </p>
+                </div>
+
+                <!-- Botón de Enviar -->
+                <button type="submit"
+                    class="w-full rounded-lg bg-white text-zinc-950 py-4 text-base font-medium hover:bg-white/90 active:bg-white/80 transition">
+                    Realizar Registro
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

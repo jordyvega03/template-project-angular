@@ -1,0 +1,51 @@
+
+<div *ngIf="isLoading" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div style="border-top-color:transparent"
+        class="w-16 h-16 border-4 border-red-400 border-double rounded-full animate-spin"></div>
+</div>
+
+
+<app-alert *ngIf="alertMessage" [message]="alertMessage" [type]="alertType"></app-alert>
+
+<div class="flex flex-col justify-center items-center h-screen bg-zinc-950">
+    <div class="flex w-full flex-col justify-center px-5 md:max-w-[50%] lg:max-w-[50%] lg:px-6">
+        <div class="flex flex-col w-[350px] max-w-[450px] mx-auto md:max-w-[450px] lg:max-w-[450px]">
+            <p class="text-[32px] font-bold text-white text-center">Login</p>
+            <p class="mb-2.5 mt-2.5 font-normal text-zinc-400 text-center">
+                Inicia sesión para utilizar IA
+            </p>
+
+            <div>
+                <!-- ✅ Se agrega el evento (ngSubmit) -->
+                <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
+                    <div class="grid gap-2">
+                        <div class="grid gap-1">
+                            <label class="text-white" for="username">Username</label>
+                            <!-- ✅ Ahora es username en lugar de email -->
+                            <input id="username" placeholder="Username" type="text" autocapitalize="none"
+                                autocomplete="username" autocorrect="off" name="username" [(ngModel)]="username"
+                                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-zinc-400 focus:outline-0"
+                                required />
+
+                            <label class="text-white mt-2" for="password">Password</label>
+                            <input id="password" placeholder="Password" type="password" autocomplete="current-password"
+                                name="password" [(ngModel)]="password"
+                                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-zinc-400 focus:outline-0"
+                                required />
+                        </div>
+
+                        <button type="submit"
+                            class="whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-zinc-950 hover:bg-white/90 active:bg-white/80 flex w-full mt-6 items-center justify-center rounded-lg px-4 py-4 text-base font-medium">
+                            Login
+                        </button>
+                    </div>
+                </form>
+
+                <p class="text-center">
+                    <a (click)="goToSignUp()" class="font-medium text-white text-sm cursor-pointer">¿No tienes una cuenta?
+                        Regístrate</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
